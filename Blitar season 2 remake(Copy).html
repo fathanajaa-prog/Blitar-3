@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Back to College Event Registration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/124fa7bd-b90f-4ae5-99c9-1a49d5a53d2b.png') center/cover no-repeat;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 700;
+    }
+
+    small {
+      font-weight: 600;
+    }
+
+    .subtitle {
+      letter-spacing: 0.1em;
+    }
+
+    .underline-light {
+      width: 60%;
+      height: 2px;
+      background-color: white;
+      margin: 0.75rem auto 1.5rem auto;
+      opacity: 0.7;
+    }
+
+    .btn-primary {
+      background-color: #9f5de2;
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 0.375rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #7a3bcc;
+      cursor: pointer;
+    }
+
+    .form-input,
+    .form-select {
+      background-color: #202020;
+      border: none;
+      border-radius: 0.375rem;
+      padding: 0.75rem 1rem;
+      color: white;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      outline-offset: 2px;
+      outline-color: #9f5de2;
+    }
+
+    .form-input::placeholder {
+      color: #aaa;
+    }
+
+    .form-select option {
+      background-color: #202020;
+      color: white;
+    }
+
+    @media (min-width: 640px) {
+      .form-container {
+        max-width: 480px;
+        margin: 1.5rem auto 0 auto;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay">
+    <section>
+      <h1 class="text-4xl sm:text-5xl uppercase">Back to College Event</h1>
+      <p class="mt-2 text-lg font-semibold">
+        14 September, 2025 <br />
+        11:00WIB - 14:00WIB
+      </p>
+      <h2 class="mt-4 text-xl sm:text-2xl tracking-widest uppercase">At Seven Pool Billard</h2>
+      <div class="underline-light"></div>
+
+      <div class="mt-6 max-w-lg mx-auto bg-black bg-opacity-50 rounded-lg p-6">
+        <h3 class="text-lg font-bold uppercase tracking-wide">
+          Pilihan Paket Kuota (11.00-14.00)
+        </h3>
+        <ul class="list-disc list-inside mt-3 text-sm sm:text-base space-y-1 font-semibold">
+          <li>2 Pemain per Meja = 35K per Pemain</li>
+          <li>4 Pemain per Meja = 25K per Pemain</li>
+          <li>Paket Ramean 1 Meja = 70K per Meja</li>
+        </ul>
+        <p class="mt-3 italic font-semibold">(Free Esteh & Snack)</p>
+
+        <h3 class="mt-8 text-xl font-bold uppercase">
+          Note:
+        </h3>
+        <ul class="list-disc list-inside mt-2 text-xs sm:text-sm space-y-1">
+          <li>Biaya diluar paket ditanggung pribadi</li>
+          <li>Kuota terbatas hanya untuk 5 meja</li>
+          <li>Apabila tidak on time maka waktu selesai permainan billiard tetap sama</li>
+          <li>DP 50% dari harga</li>
+          <li>Syarat dan ketentuan berlaku</li>
+        </ul>
+      </div>
+
+      <form id="registrationForm" class="form-container mt-8" autocomplete="off">
+        <h3 class="text-xl font-bold mb-4">Form Pendaftaran</h3>
+        <input type="text" name="name" id="name" class="form-input" placeholder="Nama Lengkap" required />
+        <input type="email" name="email" id="email" class="form-input" placeholder="Email" required />
+        <input type="tel" name="phone" id="phone" class="form-input" placeholder="Nomor Telepon" required pattern="^08[0-9]{8,12}$" title="Nomor harus diawali dengan 08 dan 10-14 digit" />
+        <select name="package" id="package" class="form-select" required>
+          <option value="" disabled selected>Pilih Paket Kuota</option>
+          <option value="2 Pemain per Meja = 35K per Pemain">2 Pemain per Meja = 35K per Pemain</option>
+          <option value="4 Pemain per Meja = 25K per Pemain">4 Pemain per Meja = 25K per Pemain</option>
+          <option value="Paket Ramean 1 Meja = 70K per Meja">Paket Ramean 1 Meja = 70K per Meja</option>
+        </select>
+
+        <button type="submit" class="btn-primary w-full text-center mt-2">Get Table Now</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    // Utility: Encode message for WhatsApp URL
+    function encodeWhatsAppMessage(text) {
+      return encodeURIComponent(text);
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const phone = "6285759152716"; // WhatsApp number in international format without plus
+
+      const name = e.target.name.value.trim();
+      const email = e.target.email.value.trim();
+      const userPhone = e.target.phone.value.trim();
+      const selectedPackage = e.target.package.value;
+
+      if (!name || !email || !userPhone || !selectedPackage) {
+        alert("Mohon isi semua kolom yang diperlukan.");
+        return;
+      }
+
+      // Construct the message according to WhatsApp text formatting
+      const message =
+        `Pendaftaran *Back to College Event*\n` +
+        `===========================\n` +
+        `Nama: ${name}\n` +
+        `Email: ${email}\n` +
+        `Nomor Telepon: ${userPhone}\n` +
+        `Paket Kuota: ${selectedPackage}\n\n` +
+        `Terima kasih sudah mendaftar!`;
+
+      // Create WhatsApp URL
+      const url = `https://wa.me/${phone}?text=${encodeWhatsAppMessage(message)}`;
+
+      // Open WhatsApp in new tab
+      window.open(url, '_blank').focus();
+    });
+  </script>
+</body>
+
+</html>
+
